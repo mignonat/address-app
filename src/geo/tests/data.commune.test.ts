@@ -20,7 +20,7 @@ it("Toulouse commune exists and has correct attributes", async () => {
 })
 
 it("Search for commune by name", async () => {
-  const result = await geoRPO.searchCommune({ search: "labege" })
+  const result = await geoRPO.searchCommune("labege")
   expect(result.features.length).toEqual(5)
   const firstFeature = result.features[0]
   expect(firstFeature).toBeDefined()
@@ -42,4 +42,14 @@ it("Search for commune by name", async () => {
   expect(properties.type).toEqual(MUNICIPALITY_TYPE.LOCALITY)
   expect(properties.x).toEqual(543211.94)
   expect(properties.y).toEqual(6284096.01)
+})
+
+it("Search for commune by postal code", async () => {
+  const result = await geoRPO.searchCommune("31670")
+  expect(result.features.length).toEqual(5)
+  const firstFeature = result.features[0]
+  expect(firstFeature).toBeDefined()
+  const properties = firstFeature.properties
+  expect(properties.city).toEqual("Labège")
+  expect(properties.postcode).toEqual("31670")
 })

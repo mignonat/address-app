@@ -49,15 +49,10 @@ export interface ICommuneFeatureProps {
   importance: string // indicateur d’importance (champ technique)
 }
 
-export interface IAddressSearchParams {
-  search?: string
-  postalCode?: string
-}
-
 export interface IGeoRepository {
   getAllRegions(): Promise<IRegion[]>
   getDepartementsByRegion(regionId: string): Promise<IDepartement[]>
   // max 895 communes per departement
   getCommunesByDepartement(departementId: string): Promise<ICommune[]>
-  searchCommune(params: IAddressSearchParams): Promise<FeatureCollection<Point, ICommuneFeatureProps>>
+  searchCommune(search: string): Promise<FeatureCollection<Point, ICommuneFeatureProps>>
 }
