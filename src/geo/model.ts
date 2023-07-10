@@ -57,6 +57,7 @@ export interface IAddressSearchParams {
 export interface IGeoRepository {
   getAllRegions(): Promise<IRegion[]>
   getDepartementsByRegion(regionId: string): Promise<IDepartement[]>
+  // max 895 communes per departement
   getCommunesByDepartement(departementId: string): Promise<ICommune[]>
   searchCommune(params: IAddressSearchParams): Promise<FeatureCollection<Point, ICommuneFeatureProps>>
 }
