@@ -1,0 +1,10 @@
+export const MAP_ID = "app-map"
+export const SEARCH_LOCATION_IMAGE_ID: string = "coordinate-image"
+export const SEARCH_SOURCE_ID: string = "search-source"
+export const COMMUNE_SOURCE_ID: string = "commune-source"
+export const EXPLORE_SOURCE_ID: string = "explore-source"
+export const SEARCH_LAYER_ID: string = "search-layer"
+export const COMMUNE_LAYER_ID: string = "commune-layer"
+export const EXPLORE_LAYER_ID: string = "explore-layer"
+export const MARKER_ICON_HEIGHT: number = 40
+export const MAP_POPUP_ID: string = "map-commune-popup"

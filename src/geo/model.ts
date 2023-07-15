@@ -1,10 +1,15 @@
-import { FeatureCollection, Point } from "geojson"
+import { Feature, FeatureCollection, Point, Polygon } from "geojson"
 
-export enum MUNICIPALITY_TYPE {
+export enum MUNICIPALITY_TYPES {
   HOUSE_NUMBER = "housenumber", // numéro « à la plaque »
   STREET = "street", // position « à la voie », placé approximativement au centre de celle-ci
   LOCALITY = "locality", // lieu-dit
   MUNICIPALITY = "municipality" // numéro « à la commune »
+}
+
+export enum GEO_TABS {
+  SEARCH = 0,
+  EXPLORE = 0
 }
 
 export interface IRegion {
@@ -29,9 +34,9 @@ export interface ICommune {
   population: number
 }
 
-export interface ICommuneFeatureProps {
+export interface ISearchResultFeatureProperties {
   id: string // identifiant de l’adresse (clef d’interopérabilité)
-  type: string // type de résultat trouvé
+  type: MUNICIPALITY_TYPES // type de résultat trouvé
   score: string // valeur de 0 à 1 indiquant la pertinence du résultat
   housenumber: string // numéro avec indice de répétition éventuel (bis, ter, A, B)
   street: string // nom de la voie
@@ -49,10 +54,27 @@ export interface ICommuneFeatureProps {
   importance: string // indicateur d’importance (champ technique)
 }
 
+export interface ICommuneFeatureProperties {
+  nom: string
+  code: string
+  codeDepartement: string
+  siren: string
+  codeEpci: string
+  codeRegion: string
+  codesPostaux: string[]
+  population: number
+}
+
+export type ISearchFeature = Feature<Point, ISearchResultFeatureProperties>
+export type ICommuneFeature = Feature<Polygon, ICommuneFeatureProperties>
+
 export interface IGeoRepository {
   getAllRegions(): Promise<IRegion[]>
-  getDepartementsByRegion(regionId: string): Promise<IDepartement[]>
+  getAllDepartements(): Promise<IDepartement[]>
+  searchAddress(search: string): Promise<FeatureCollection<Point, ISearchResultFeatureProperties>>
+  getCommuneFeature(cityCode: string): Promise<ICommuneFeature>
   // max 895 communes per departement
-  getCommunesByDepartement(departementId: string): Promise<ICommune[]>
-  searchCommune(search: string): Promise<FeatureCollection<Point, ICommuneFeatureProps>>
+  getDepartementCommuneFeatures(departementCode: string): Promise<FeatureCollection<Polygon, ICommuneFeatureProperties>>
 }
+
+export type OnFeatureChangeFunction = (features: ISearchFeature[]) => void

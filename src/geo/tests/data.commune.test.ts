@@ -1,26 +1,27 @@
-import { MUNICIPALITY_TYPE } from "../model"
+import { MUNICIPALITY_TYPES } from "../model"
 import { geoRPO } from "../repository"
 
 it("Toulouse commune exists and has correct attributes", async () => {
   // 31 is Haute-Garonne
-  const communes = await geoRPO.getCommunesByDepartement("31")
-  expect(communes.length).toEqual(586)
+  const communes = await geoRPO.getDepartementCommuneFeatures("31")
+  expect(communes.features.length).toEqual(586)
   // check Toulouse is inside
-  const toulouse = communes.find(c => c.nom === "Toulouse")
+  const toulouse = communes.features.find(f => f.properties.nom === "Toulouse")
   if (!toulouse) {
     throw Error("Unable to find Toulouse city")
   }
-  expect(toulouse.code).toEqual("31555")
-  expect(toulouse.codeDepartement).toEqual("31")
-  expect(toulouse.codeEpci).toEqual("243100518")
-  expect(toulouse.codeRegion).toEqual("76")
-  expect(typeof toulouse.population).toEqual("number")
-  expect(toulouse.siren).toEqual("213105554")
-  expect(toulouse.codesPostaux.join(", ")).toEqual("31000, 31100, 31200, 31300, 31400, 31500")
+  const properties = toulouse.properties
+  expect(properties.code).toEqual("31555")
+  expect(properties.codeDepartement).toEqual("31")
+  expect(properties.codeEpci).toEqual("243100518")
+  expect(properties.codeRegion).toEqual("76")
+  expect(typeof properties.population).toEqual("number")
+  expect(properties.siren).toEqual("213105554")
+  expect(properties.codesPostaux.join(", ")).toEqual("31000, 31100, 31200, 31300, 31400, 31500")
 })
 
 it("Search for commune by name", async () => {
-  const result = await geoRPO.searchCommune("labege")
+  const result = await geoRPO.searchAddress("labege")
   expect(result.features.length).toEqual(5)
   const firstFeature = result.features[0]
   expect(firstFeature).toBeDefined()
@@ -39,13 +40,13 @@ it("Search for commune by name", async () => {
   expect(properties.postcode).toEqual("32600")
   expect(typeof properties.score).toEqual("number")
   expect(properties.street).not.toBeDefined()
-  expect(properties.type).toEqual(MUNICIPALITY_TYPE.LOCALITY)
+  expect(properties.type).toEqual(MUNICIPALITY_TYPES.LOCALITY)
   expect(properties.x).toEqual(543211.94)
   expect(properties.y).toEqual(6284096.01)
 })
 
 it("Search for commune by postal code", async () => {
-  const result = await geoRPO.searchCommune("31670")
+  const result = await geoRPO.searchAddress("31670")
   expect(result.features.length).toEqual(5)
   const firstFeature = result.features[0]
   expect(firstFeature).toBeDefined()

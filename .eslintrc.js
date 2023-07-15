@@ -12,13 +12,7 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module"
   },
-  plugins: [
-    "eslint-plugin-import",
-    "eslint-plugin-jsdoc",
-    "eslint-plugin-prefer-arrow",
-    "@typescript-eslint",
-    "@typescript-eslint/tslint"
-  ],
+  plugins: ["eslint-plugin-import", "eslint-plugin-prefer-arrow", "@typescript-eslint"],
   root: true,
   rules: {
     "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -95,7 +89,6 @@ module.exports = {
         hoist: "never"
       }
     ],
-    "@typescript-eslint/no-unused-expressions": "error",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-var-requires": "error",
     "@typescript-eslint/prefer-for-of": "error",
@@ -145,9 +138,6 @@ module.exports = {
     ],
     "id-match": "off",
     "import/order": "off",
-    "jsdoc/check-alignment": "error",
-    "jsdoc/check-indentation": "error",
-    "jsdoc/newline-after-description": "error",
     "max-classes-per-file": ["error", 10],
     "max-len": [
       "error",
@@ -208,7 +198,6 @@ module.exports = {
     "no-underscore-dangle": "off",
     "no-unreachable": "error",
     "no-unsafe-finally": "error",
-    "no-unused-expressions": "error",
     "no-unused-labels": "error",
     "no-use-before-define": "off",
     "no-var": "error",
@@ -249,23 +238,6 @@ module.exports = {
     "@typescript-eslint/unbound-method": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/require-await": "off",
-    "@typescript-eslint/tslint/config": [
-      "error",
-      {
-        rules: {
-          "import-spacing": true,
-          "whitespace": [
-            true,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-separator",
-            "check-type",
-            "check-typecast"
-          ]
-        }
-      }
-    ],
     "space-before-function-paren": "off"
   }
 }

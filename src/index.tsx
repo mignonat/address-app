@@ -1,8 +1,8 @@
+import "maplibre-gl/dist/maplibre-gl.css"
 import React from "react"
 import ReactDOM from "react-dom/client"
-import App from "./app/components/App"
+import { App } from "./app/components/App"
 import reportWebVitals from "./app/tools/report-web-vitals"
-import "./index.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(

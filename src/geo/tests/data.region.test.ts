@@ -17,4 +17,5 @@ it("First region has correct attributes, and order doesn't changed", async () =>
   }
   expect(lastRegion.code).toEqual("06")
   expect(lastRegion.nom).toEqual("Mayotte")
+  // TODO test all departements has been populated
 })
