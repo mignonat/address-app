@@ -17,17 +17,38 @@ const InfoRow = ({ title, value }: IInfoRowProps) => {
   }
   return (
     <FlexBox fullWidth jc="start">
-      <Typography color="textPrimary" sx={{ width: "8rem" }}>
+      <Typography color="textPrimary" sx={{ width: "7rem" }}>
         {title}
       </Typography>
-      <Typography color="textSecondary">{value}</Typography>
+      <Typography color="textSecondary" sx={{ maxWidth: "30rem" }}>
+        {value}
+      </Typography>
     </FlexBox>
   )
 }
 
 export const CommuneDetails = ({ feature: { properties } }: ICommuneDetailsProps) => (
-  <FlexBox vertical gap>
+  <FlexBox
+    vertical
+    gap=".3rem"
+    ai="start"
+    sx={{
+      pl: ".5rem",
+      pr: ".5rem"
+    }}>
+    <Typography color="textPrimary" fontWeight="bold" sx={{ mb: ".5rem" }}>
+      Commune
+    </Typography>
     <InfoRow title="Nom" value={properties.nom} />
+    <InfoRow title="Code" value={properties.code} />
     <InfoRow title="Population" value={properties.population} />
+    <InfoRow title="Siren" value={properties.siren} />
+    <InfoRow
+      title="Code postaux"
+      value={(Array.isArray(properties.codesPostaux)
+        ? properties.codesPostaux
+        : JSON.parse(properties.codesPostaux as any)
+      ).join(", ")}
+    />
   </FlexBox>
 )

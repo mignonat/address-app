@@ -8,7 +8,7 @@ import {
   ISearchResultFeatureProperties
 } from "./model"
 
-// Here I assume methods parameters have already been checked
+// Here we assume methods parameters have already been checked
 
 // http caching should be better but it's better than nothing...
 const cachedCommuneFeatureByCode: { [code: string]: ICommuneFeature } = {}

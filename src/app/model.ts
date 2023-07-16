@@ -29,11 +29,10 @@ export interface IAppState {
   isSearching: boolean
   search: string
   searchResult: ISearchFeature[]
-  selectedFeatureId: string
   isLoadingSearchCommune: boolean
   isLoadingExploreCommune: boolean
-  toDisplaySearchCommune: ICommuneFeature | null
-  toDisplayExploreCommune: ICommuneFeature | null
+  selectedSearchCommune: ICommuneFeature | null
+  selectedExploreCommune: ICommuneFeature | null
   selectedRegion: IRegion | null
   selectedDepartement: IDepartement | null
   isLoadingDepartementCommunes: boolean

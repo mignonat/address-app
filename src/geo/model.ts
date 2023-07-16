@@ -1,5 +1,7 @@
 import { Feature, FeatureCollection, Point, Polygon } from "geojson"
 
+export const MIN_SEARCH_LENGTH = 3
+
 export enum MUNICIPALITY_TYPES {
   HOUSE_NUMBER = "housenumber", // numéro « à la plaque »
   STREET = "street", // position « à la voie », placé approximativement au centre de celle-ci
@@ -63,6 +65,7 @@ export interface ICommuneFeatureProperties {
   codeRegion: string
   codesPostaux: string[]
   population: number
+  searchFeatureId: string
 }
 
 export type ISearchFeature = Feature<Point, ISearchResultFeatureProperties>

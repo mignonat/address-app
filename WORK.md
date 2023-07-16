@@ -26,13 +26,15 @@ Après avoir analysé le besoin j'ai écris l'interface, puis je l'ai implément
 
 Enfin j'ai testé et écrit des tests pour chaque fonctions avant d'aller plus loin.
 
-J'ai commençé le UI en décidant d'utiliser une carte pour proposer une meilleure experience UX. Je suis habitué à Mapbox V2, mais il faut une clé d'API pour utiliser leurs styles, alors j'ai décider de tester maplibre (fork de Mapbox V1), qui semble pas trop mal fonctionner.
+J'ai commençé le UI en décidant d'utiliser une carte pour proposer une meilleure experience UX. Je suis habitué à Mapbox V2, mais il faut une clé d'API pour utiliser leurs styles, alors j'ai testé maplibre (fork de Mapbox V1), qui semble pas trop mal fonctionner.
 
-J'utilise toujours Redux dans mes applications, car je design en API, et cela permet de découpler les components des methodes de services (que je peux tester facilement ainsi), mais pour ce simple exercice je n'en avais pas besoin. J'ai donc utiliser simplement utilisé React reducer pour propager un state global, qui se limite aux components.
-
-Pour le state globale, d'habitude je découpe les reducers par fonctionnalité, mais ici pas besoin pour une seule page j'ai laissé un seul reducer.
+J'utilise toujours Redux dans mes applications, car je design en API, et cela permet de découpler les components des methodes de services (que je peux tester facilement ainsi), mais pour ce simple exercice je n'en avais pas besoin. J'ai donc utiliser simplement utilisé React reducer pour propager un state global, qui se limite aux components. Je découpe les reducers par fonctionnalité, mais ici pour une seule page j'ai laissé un seul reducer global.
 
 Les recherches sont paginés pour éviter un bug de perf avec de tros gros résultat.
 
-Je n'ai pas mis de theme en place pour ce petit projet mais material-ui permet de faire ce que l'on veux.
-
+Les idées non implémentées par manque de temps:
+ - Rendre responsive pour les tres petits écrans (phone). J'ai pensé à mettre le panel fixé sur la gauche, et qui se déplie pour rechercher/explorer, puis se repli tout seul quand on clique sur une ligne de résultat pour afficher la map.
+ - Mettre un légende pour comprendre ce qui est affiché
+ - Pouvoir sélectionner/déselectionner dans la liste en cliquant sur la carte, compliqué avec le scope limité aux component de react reducer, mais serait simple avec Redux qui a un scope applicatif
+ - Mettre au moins un dark theme, material-ui permet de faire ce que l'on veux mais pas le temps dans le scope de ce projet.
+ - 

@@ -28,12 +28,6 @@ export const appReducer = (state: IAppState = getDefaultAppState(), action: IRed
         departementByCode: action.departementByCode as IDepartementByCode
       }
     }
-    case ACTIONS.SELECT_SEARCH_FEATURE: {
-      return {
-        ...state,
-        selectedFeatureId: action.selectedFeatureId as string
-      }
-    }
     case ACTIONS.SET_TAB: {
       return {
         ...state,
@@ -44,21 +38,20 @@ export const appReducer = (state: IAppState = getDefaultAppState(), action: IRed
       return {
         ...state,
         searchResult: action.searchResult as ISearchFeature[],
-        isSearching: false,
-        selectedFeatureId: ""
+        isSearching: false
       }
     }
-    case ACTIONS.SET_SEARCH_COMMUNE_TO_DISPLAY: {
+    case ACTIONS.SELECT_SEARCH_COMMUNE: {
       return {
         ...state,
-        toDisplaySearchCommune: action.toDisplaySearchCommune as ICommuneFeature | null,
+        selectedSearchCommune: action.selectedSearchCommune as ICommuneFeature | null,
         isLoadingSearchCommune: false
       }
     }
-    case ACTIONS.SET_EXPLORE_COMMUNE_TO_DISPLAY: {
+    case ACTIONS.SELECT_EXPLORE_COMMUNE: {
       return {
         ...state,
-        toDisplayExploreCommune: action.toDisplayExploreCommune as ICommuneFeature | null,
+        selectedExploreCommune: action.selectedExploreCommune as ICommuneFeature | null,
         isLoadingExploreCommune: false
       }
     }

@@ -1,4 +1,4 @@
-import { Feature } from "geojson"
+import { Feature, Point, Polygon } from "geojson"
 import { Map } from "maplibre-gl"
 
 let turf: typeof import("@turf/turf")
@@ -12,7 +12,7 @@ import(/* webpackChunkName: "turf" */ "@turf/turf")
     console.error("An error occurred while async loading turf", error)
   })
 
-export function fitFeaturesOnMap(map: Map, features: Feature[]): void {
+export const fitFeaturesOnMap = (map: Map, features: Feature[]): void => {
   if (!features || features.length === 0) {
     return
   }
@@ -28,3 +28,5 @@ export function fitFeaturesOnMap(map: Map, features: Feature[]): void {
     }
   )
 }
+
+export const getCentroid = (feature: Feature<Polygon>): Feature<Point> => turf.centroid(feature)

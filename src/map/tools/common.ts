@@ -1,13 +1,17 @@
-import { Feature } from "geojson"
 import { GeoJSONSource, LngLat, Map, MapOptions, NavigationControl, ScaleControl } from "maplibre-gl"
 import { ICommuneFeature } from "../../geo/model"
 import markerRegular from "../../resources/images/pin-regular.png"
 import {
-  COMMUNE_LAYER_ID,
-  COMMUNE_SOURCE_ID,
-  EXPLORE_LAYER_ID,
+  EXPLORE_FILL_LAYER_ID,
+  EXPLORE_LINE_LAYER_ID,
+  EXPLORE_SELECTION_FILL_LAYER_ID,
+  EXPLORE_SELECTION_LINE_LAYER_ID,
+  EXPLORE_SELECTION_SOURCE_ID,
   EXPLORE_SOURCE_ID,
+  IUpdateSourceParams,
   MARKER_ICON_HEIGHT,
+  SEARCH_COMMUNE_LAYER_ID,
+  SEARCH_COMMUNE_SOURCE_ID,
   SEARCH_LAYER_ID,
   SEARCH_LOCATION_IMAGE_ID,
   SEARCH_SOURCE_ID
@@ -26,15 +30,18 @@ export const createMap = (containerId: string): Map => {
     maxZoom: 23,
     renderWorldCopies: true,
     trackResize: true,
-    style: "https://tiles.basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
+    center: [2.358895047134297, 46.95496951339453],
+    zoom: 5.652635189029413,
+    style: "https://openmaptiles.geo.data.gouv.fr/styles/osm-bright/style.json"
   }
   const map = new Map(options)
+  ;(window as any).mp = map
   map.addControl(new NavigationControl())
   map.addControl(new ScaleControl({ unit: "metric" }))
   createMapPopupIfNeeded(map)
   const onStyleLoaded = () => {
     if (map.isStyleLoaded()) {
-      map.addSource(COMMUNE_SOURCE_ID, {
+      map.addSource(SEARCH_COMMUNE_SOURCE_ID, {
         type: "geojson",
         data: {
           type: "FeatureCollection",
@@ -43,9 +50,9 @@ export const createMap = (containerId: string): Map => {
         maxzoom: 24
       })
       map.addLayer({
-        id: COMMUNE_LAYER_ID,
+        id: SEARCH_COMMUNE_LAYER_ID,
         type: "fill",
-        source: COMMUNE_SOURCE_ID,
+        source: SEARCH_COMMUNE_SOURCE_ID,
         paint: {
           "fill-color": "#ff0000",
           "fill-opacity": 0.5
@@ -63,11 +70,17 @@ export const createMap = (containerId: string): Map => {
         id: SEARCH_LAYER_ID,
         type: "symbol",
         source: SEARCH_SOURCE_ID,
+        paint: {
+          "text-color": "#000000"
+        },
         layout: {
           "icon-image": SEARCH_LOCATION_IMAGE_ID,
           "icon-allow-overlap": true,
           "icon-ignore-placement": true,
-          "icon-offset": [0, -MARKER_ICON_HEIGHT / 2]
+          "icon-offset": [0, -MARKER_ICON_HEIGHT / 2],
+          "text-field": ["get", "name"],
+          "text-anchor": "bottom",
+          "text-offset": [0, 1]
         }
       })
       map.addSource(EXPLORE_SOURCE_ID, {
@@ -79,12 +92,47 @@ export const createMap = (containerId: string): Map => {
         maxzoom: 24
       })
       map.addLayer({
-        id: EXPLORE_LAYER_ID,
+        id: EXPLORE_FILL_LAYER_ID,
         type: "fill",
         source: EXPLORE_SOURCE_ID,
         paint: {
           "fill-color": "#ff0000",
           "fill-opacity": 0.5
+        }
+      })
+      map.addLayer({
+        id: EXPLORE_LINE_LAYER_ID,
+        type: "line",
+        source: EXPLORE_SOURCE_ID,
+        paint: {
+          "line-color": "#020202",
+          "line-width": 1
+        }
+      })
+      map.addSource(EXPLORE_SELECTION_SOURCE_ID, {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: []
+        },
+        maxzoom: 24
+      })
+      map.addLayer({
+        id: EXPLORE_SELECTION_FILL_LAYER_ID,
+        type: "fill",
+        source: EXPLORE_SELECTION_SOURCE_ID,
+        paint: {
+          "fill-color": "#dbff05",
+          "fill-opacity": 0.5
+        }
+      })
+      map.addLayer({
+        id: EXPLORE_SELECTION_LINE_LAYER_ID,
+        type: "line",
+        source: EXPLORE_SELECTION_SOURCE_ID,
+        paint: {
+          "line-color": "#020202",
+          "line-width": 3
         }
       })
     } else {
@@ -101,8 +149,8 @@ export const createMap = (containerId: string): Map => {
     openMapPopup(map, lngLat, features[0] as any)
   }
   map.on("click", () => closeMapPopup())
-  map.on("click", COMMUNE_LAYER_ID, event => onMouseClick(event.lngLat, event.features as any))
-  map.on("click", EXPLORE_LAYER_ID, event => onMouseClick(event.lngLat, event.features as any))
+  map.on("click", SEARCH_COMMUNE_LAYER_ID, event => onMouseClick(event.lngLat, event.features as any))
+  map.on("click", EXPLORE_FILL_LAYER_ID, event => onMouseClick(event.lngLat, event.features as any))
   return map
 }
 
@@ -116,8 +164,10 @@ export const setLayerVisibility = (map: Map, layerId: string, isVisible: boolean
   }
 }
 
-export const updateMapSource = (map: Map, sourceId: string, features: Feature[]): void => {
-  closeMapPopup()
+export const updateMapSource = ({ map, features, sourceId, avoidClosePopup, avoidFit }: IUpdateSourceParams): void => {
+  if (!avoidClosePopup) {
+    closeMapPopup()
+  }
   const source: GeoJSONSource = map.getSource(sourceId) as GeoJSONSource
   if (!source) {
     return
@@ -126,7 +176,9 @@ export const updateMapSource = (map: Map, sourceId: string, features: Feature[])
     type: "FeatureCollection",
     features
   })
-  fitFeaturesOnMap(map, features)
+  if (features.length > 0 && !avoidFit) {
+    fitFeaturesOnMap(map, features)
+  }
 }
 
 function loadMapImage(map: Map, imageName: string, iconUrl: string): Promise<void> {

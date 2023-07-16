@@ -24,7 +24,10 @@ export const RegionAccordion = React.memo(
             dispatch({ type: ACTIONS.SELECT_REGION, selectedRegion: newIsExpanded ? region : null })
           }
         }}
-        sx={{ backgroundColor: theme => alpha(theme.palette.background.paper, 0.2) }}>
+        sx={{
+          boxShadow: "0px 1px 5px 0px rgba(0,0,0,0.1)",
+          backgroundColor: theme => alpha(theme.palette.background.paper, 0.2)
+        }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
           <Typography color="textPrimary">
             {region.nom} ({departements.length})

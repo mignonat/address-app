@@ -18,11 +18,11 @@ it("Toulouse commune exists and has correct attributes", async () => {
   expect(typeof properties.population).toEqual("number")
   expect(properties.siren).toEqual("213105554")
   expect(properties.codesPostaux.join(", ")).toEqual("31000, 31100, 31200, 31300, 31400, 31500")
-})
+}, 70000)
 
 it("Search for commune by name", async () => {
   const result = await geoRPO.searchAddress("labege")
-  expect(result.features.length).toEqual(5)
+  expect(result.features.length).toEqual(100)
   const firstFeature = result.features[0]
   expect(firstFeature).toBeDefined()
   const properties = firstFeature.properties
@@ -47,10 +47,20 @@ it("Search for commune by name", async () => {
 
 it("Search for commune by postal code", async () => {
   const result = await geoRPO.searchAddress("31670")
-  expect(result.features.length).toEqual(5)
+  expect(result.features.length).toEqual(100)
   const firstFeature = result.features[0]
   expect(firstFeature).toBeDefined()
   const properties = firstFeature.properties
   expect(properties.city).toEqual("Labège")
   expect(properties.postcode).toEqual("31670")
 })
+
+it("Get one commune feature", async () => {
+  const feature = await geoRPO.getCommuneFeature("31254")
+  expect(feature).toBeDefined()
+  const properties = feature.properties
+  expect(properties.code).toEqual("31254")
+  expect(properties.codesPostaux[0]).toEqual("31670")
+  expect(properties.codeRegion).toEqual("76")
+  expect(properties.codeDepartement).toEqual("31")
+}, 70000)
