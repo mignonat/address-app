@@ -30,6 +30,12 @@ Le logo (la loupe en SVG) ce n'est pas mon oeuvre mais celle d'un ami qui me l'a
 
 Je charge la librairie turf de manière asynchrone, sinon elle alourdi significativement la taille du bundle.
 
+La page se sépare en deux fonctionnalités :
+ - SEARCH : le tab ou l'on recherche en saisissant l'adresse
+ - EXPLORE : le tab ou l'on parcours les regions et departements
+
+On retrouve partout les noms "search" et "explore" dans le code source pour faire référence à ces deux fonctionnalités.
+
 # CSS
 
 J'utilise un seul fichier css "global", dans src/app/components/App.css. Material-ui propose de pouvoir définir en JSX un style global mais comme create-react-app avait déjà créé le fichier je l'ai utilisé. 
@@ -45,7 +51,9 @@ Pour acceder au theme de material, rien de plus simple au lieu de passer un stri
 # React
 
 J'utilise React reducer au lieu de Redux (c'était l'occasion que je l'essaye enfin ...)
+
 J'utilise React.memo pour éviter de refresh si les props ne changent pas
+
 Je suis partisant de l'utilisation de plusieurs useEffect dans un même component, suivant le besoin. C'est une bonne pratique qui permet le fameux "separation of concern". Et puis si on ne le fait pas on finit avec des useEffect indebuggable car trop compliqué.
 
 # Conventions
