@@ -5,9 +5,10 @@ import { CommuneDetails } from "../components/CommuneDetails"
 import { MAP_POPUP_ID } from "../model"
 
 let popup: Popup
+let popupIndex = 0
 let root: Root | undefined
 
-export function createMapPopupIfNeeded(map: Map): void {
+export function createMapPopupIfNeeded(): void {
   if (!popup) {
     popup = new Popup({
       closeButton: false,
@@ -18,26 +19,28 @@ export function createMapPopupIfNeeded(map: Map): void {
 }
 
 export function closeMapPopup(): void {
+  unMountPopupContent()
   if (!popup) {
     return
   }
-  unMountPopupContent()
   popup.remove()
 }
 
 export function openMapPopup(map: Map, position: LngLatLike, feature: ICommuneFeature): void {
   if (!popup) {
-    console.warn("Map popup is not available")
-    return
+    createMapPopupIfNeeded()
   }
+  const POPUP_ID = `${MAP_POPUP_ID}-${++popupIndex}`
   popup
     .setLngLat(position)
-    .setHTML(`<div id="${MAP_POPUP_ID}" />`)
+    .setHTML(`<div id="${POPUP_ID}" />`)
     .addTo(map)
     .on("close", () => unMountPopupContent())
-  if (!root) {
-    root = createRoot(document.getElementById(MAP_POPUP_ID) as Element)
+  if (root) {
+    root.unmount()
+    root = undefined
   }
+  root = createRoot(document.getElementById(POPUP_ID) as Element)
   root.render(<CommuneDetails feature={feature} />)
 }
 

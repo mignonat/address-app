@@ -24,6 +24,9 @@ export const CommuneList = React.memo(
     const goBack = () => dispatch({ type: ACTIONS.SELECT_DEPARTEMENT, selectedDepartement: null })
     useEffect(() => {
       ;(async () => {
+        if (departement && communes.length > 0) {
+          return
+        }
         dispatch({ type: ACTIONS.SET_IS_LOADING_DEPARTEMENT_COMMUNES, isLoadingDepartementCommunes: true })
         try {
           const featureCollection = await geoRPO.getDepartementCommuneFeatures(departement.code)

@@ -9,8 +9,10 @@ import {
   SEARCH_LAYER_ID
 } from "../model"
 import { setLayerVisibility } from "./common"
+import { closeMapPopup } from "./popup"
 
 export const onTabChange = (map: Map, tab: GEO_TABS) => {
+  closeMapPopup()
   if (tab !== GEO_TABS.EXPLORE) {
     setLayerVisibility(map, SEARCH_LAYER_ID, false)
     setLayerVisibility(map, SEARCH_COMMUNE_LAYER_ID, false)

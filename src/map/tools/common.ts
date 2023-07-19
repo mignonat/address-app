@@ -17,7 +17,7 @@ import {
   SEARCH_SOURCE_ID
 } from "../model"
 import { fitFeaturesOnMap } from "./geo"
-import { closeMapPopup, createMapPopupIfNeeded, openMapPopup } from "./popup"
+import { closeMapPopup, openMapPopup } from "./popup"
 
 export const createMap = (containerId: string): Map => {
   const container = document.getElementById(containerId)
@@ -38,7 +38,6 @@ export const createMap = (containerId: string): Map => {
   ;(window as any).mp = map
   map.addControl(new NavigationControl())
   map.addControl(new ScaleControl({ unit: "metric" }))
-  createMapPopupIfNeeded(map)
   const onStyleLoaded = () => {
     if (map.isStyleLoaded()) {
       map.addSource(SEARCH_COMMUNE_SOURCE_ID, {
@@ -181,8 +180,8 @@ export const updateMapSource = ({ map, features, sourceId, avoidClosePopup, avoi
   }
 }
 
-function loadMapImage(map: Map, imageName: string, iconUrl: string): Promise<void> {
-  return new Promise<void>(resolve => {
+const loadMapImage = (map: Map, imageName: string, iconUrl: string): Promise<void> =>
+  new Promise<void>(resolve => {
     try {
       map.loadImage(iconUrl, (error, image: any) => {
         if (error) {
@@ -197,4 +196,3 @@ function loadMapImage(map: Map, imageName: string, iconUrl: string): Promise<voi
       return resolve()
     }
   })
-}

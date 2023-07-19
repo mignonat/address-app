@@ -1,3 +1,9 @@
+# Mes notes concernant la réalisation du projet
+  Click [here](./WORK.md)
+
+# Screenshots
+  Dans le repertoire [screenshot](./screenshots/) de ce projet
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

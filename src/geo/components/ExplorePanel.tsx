@@ -45,7 +45,7 @@ const ExplorePanelFunction = React.memo(
         {!selectedDepartement && (
           <>
             <Typography color="textSecondary" sx={{ maxWidth: "23rem" }}>
-              Cliquez sur un département dans une région pour trouver une commune
+              Choisir une région, puis un département pour explorer ses communes
             </Typography>
             <Typography color="textPrimary" fontWeight="bold">
               Régions

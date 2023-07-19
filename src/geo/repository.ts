@@ -10,7 +10,7 @@ import {
 
 // Here we assume methods parameters have already been checked
 
-// http caching should be better but it's better than nothing...
+// http caching should be better for that, but it's better than nothing...
 const cachedCommuneFeatureByCode: { [code: string]: ICommuneFeature } = {}
 
 export const geoRPO: IGeoRepository = {

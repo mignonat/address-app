@@ -5,6 +5,7 @@ import React from "react"
 import { IReducerAction } from "../../app/model"
 import { ACTIONS } from "../../app/store/actions"
 import { GlobalContext } from "../../app/store/context"
+import logo from "../../resources/images/logo.svg"
 import { FlexBox } from "../../ui/components/FlexBox"
 import { LinearLoader } from "../../ui/components/LinearLoader"
 import { GEO_TABS } from "../model"
@@ -44,6 +45,9 @@ const GeoPanelFunction = React.memo(
         "& > *": {
           width: "100%"
         },
+        "& .logo": {
+          width: "10rem"
+        },
         ...sx
       }}>
       {hasInitialDataError ? (
@@ -55,6 +59,7 @@ const GeoPanelFunction = React.memo(
         <LinearLoader text="Chargement des données..." sx={{ p: "2rem" }} />
       ) : (
         <>
+          <img src={logo} alt="mySvgImage" className="logo" />
           <Tabs
             value={activeTab}
             centered

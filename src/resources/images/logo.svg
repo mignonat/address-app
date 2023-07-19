@@ -7,32 +7,32 @@
    viewBox="0 0 52.283688 41.9123"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="placehoderSerch.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   inkscapeVersion="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodiDocname="placehoderSerch.svg"
+   xmlnsInkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlnsSodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlnsXlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
+   xmlnsSvg="http://www.w3.org/2000/svg">
+  <sodipodiNamedview
      id="namedview7"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="mm"
+     inkscapePageshadow="2"
+     inkscapePageopacity="0.0"
+     inkscapePagecheckerboard="0"
+     inkscapeDocument-units="mm"
      showgrid="false"
-     inkscape:zoom="0.33141421"
-     inkscape:cx="3361.3525"
-     inkscape:cy="469.20136"
-     inkscape:window-width="3840"
-     inkscape:window-height="2089"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscapeZoom="0.33141421"
+     inkscapeCx="3361.3525"
+     inkscapeCy="469.20136"
+     inkscapeWindow-width="3840"
+     inkscapeWindow-height="2089"
+     inkscapeWindow-x="1912"
+     inkscapeWindow-y="-8"
+     inkscapeWindow-maximized="1"
+     inkscapeCurrent-layer="layer1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -48,7 +48,7 @@
     <clipPath
        id="SVGID_2_-9">
       <use
-         xlink:href="#SVGID_1_"
+         xlinkHref="#SVGID_1_"
          style="overflow:visible"
          id="use14170-2"
          x="0"
@@ -65,7 +65,7 @@
     <clipPath
        id="SVGID_2_-3">
       <use
-         xlink:href="#SVGID_1_"
+         xlinkHref="#SVGID_1_"
          style="overflow:visible"
          id="use14170-9"
          x="0"
@@ -82,7 +82,7 @@
     <clipPath
        id="SVGID_2_-0">
       <use
-         xlink:href="#SVGID_1_"
+         xlinkHref="#SVGID_1_"
          style="overflow:visible"
          id="use14170-6"
          x="0"
@@ -98,8 +98,8 @@
        r="100.6" />
   </defs>
   <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
+     inkscapeLabel="Calque 1"
+     inkscapeGroupmode="layer"
      id="layer1"
      transform="translate(1047.203,0.9017709)">
     <g
@@ -140,7 +140,7 @@
             <clipPath
                id="SVGID_2_">
               <use
-                 xlink:href="#SVGID_1_"
+                 xlinkHref="#SVGID_1_"
                  style="overflow:visible"
                  id="use14170"
                  x="0"

@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material"
+import React from "react"
 import { ICommuneFeature } from "../../geo/model"
 import { FlexBox } from "../../ui/components/FlexBox"
 
@@ -27,7 +28,7 @@ const InfoRow = ({ title, value }: IInfoRowProps) => {
   )
 }
 
-export const CommuneDetails = ({ feature: { properties } }: ICommuneDetailsProps) => (
+export const CommuneDetails = React.memo(({ feature: { properties } }: ICommuneDetailsProps) => (
   <FlexBox
     vertical
     gap=".3rem"
@@ -51,4 +52,4 @@ export const CommuneDetails = ({ feature: { properties } }: ICommuneDetailsProps
       ).join(", ")}
     />
   </FlexBox>
-)
+))

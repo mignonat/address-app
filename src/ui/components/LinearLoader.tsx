@@ -1,4 +1,5 @@
 import { Box, LinearProgress, SxProps, Theme, Typography } from "@mui/material"
+import React from "react"
 import { FlexBox } from "./FlexBox"
 
 interface ILinearLoaderProps {
@@ -8,7 +9,7 @@ interface ILinearLoaderProps {
   sx?: SxProps<Theme> | undefined
 }
 
-export const LinearLoader = ({ id, text, className, sx }: ILinearLoaderProps) => (
+export const LinearLoader = React.memo(({ id, text, className, sx }: ILinearLoaderProps) => (
   <Box
     id={id}
     sx={{
@@ -38,4 +39,4 @@ export const LinearLoader = ({ id, text, className, sx }: ILinearLoaderProps) =>
     )}
     <LinearProgress color="secondary" className="linear-progress"></LinearProgress>
   </Box>
-)
+))
