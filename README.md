@@ -1,5 +1,5 @@
 # Ma documentation/rapport concernant la réalisation de ce petit projet
-  Click [here](./WORK.md)
+  Lire le fichier [WORK.md](./WORK.md)
 
 # Screenshots
   Dans le repertoire [screenshot](./screenshots/) de ce projet
