@@ -1,5 +1,6 @@
 import { GeoJSONSource, LngLat, Map, MapOptions, NavigationControl, ScaleControl } from "maplibre-gl"
 import { ICommuneFeature } from "../../geo/model"
+import { fitFeaturesOnMap } from "../../geo/tools/operations"
 import markerRegular from "../../resources/images/pin-regular.png"
 import {
   EXPLORE_FILL_LAYER_ID,
@@ -16,7 +17,6 @@ import {
   SEARCH_LOCATION_IMAGE_ID,
   SEARCH_SOURCE_ID
 } from "../model"
-import { fitFeaturesOnMap } from "./geo"
 import { closeMapPopup, openMapPopup } from "./popup"
 
 export const createMap = (containerId: string): Map => {

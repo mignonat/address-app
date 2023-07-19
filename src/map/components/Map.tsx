@@ -4,6 +4,7 @@ import { Map as MapLibreMap } from "maplibre-gl"
 import React, { useEffect, useRef } from "react"
 import { GlobalContext } from "../../app/store/context"
 import { GEO_TABS, ICommuneFeature, ICommuneFeatureProperties, ISearchFeature } from "../../geo/model"
+import { getCentroid } from "../../geo/tools/operations"
 import { FlexBox } from "../../ui/components/FlexBox"
 import {
   EXPLORE_SELECTION_SOURCE_ID,
@@ -13,7 +14,6 @@ import {
   SEARCH_SOURCE_ID
 } from "../model"
 import { createMap, updateMapSource } from "../tools/common"
-import { getCentroid } from "../tools/geo"
 import { openMapPopup } from "../tools/popup"
 import { onTabChange } from "../tools/tab"
 

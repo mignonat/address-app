@@ -1,4 +1,4 @@
-# Mes notes concernant la réalisation du projet
+# Ma documentation/rapport concernant la réalisation de ce petit projet
   Click [here](./WORK.md)
 
 # Screenshots
